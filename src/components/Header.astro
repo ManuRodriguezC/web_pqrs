@@ -1,0 +1,203 @@
+---
+import Arrow from "./icons/Arrow.astro"
+
+const options = [
+    {
+        name: "Conócenos",
+        url: "https://cootratiempo.com/conocenos/nosotros/",
+        links: [
+            {
+                name: "Nosotros",
+                url: "https://cootratiempo.com/conocenos/nosotros/"
+            },
+            {
+                name: "Normatividad",
+                url: "https://cootratiempo.com/conocenos/normatividad/"
+            }
+        ]
+    },
+    {
+        name: "Servicios",
+        url: "https://cootratiempo.com/servicios/creditos/",
+        links: [
+            {
+                name: "Créditos",
+                url: "https://cootratiempo.com/servicios/creditos/"
+            },
+            {
+                name: "Convenios",
+                url: "https://cootratiempo.com/servicios/convenios/"
+            }
+        ]
+    },
+    {
+        name: "Beneficios",
+        url: "https://cootratiempo.com/beneficios/",
+        links: [
+            {
+                name: "Auxilios",
+                url: "https://cootratiempo.com/beneficios/"
+            },
+        ]
+    },
+    {
+        name: "Afiliación",
+        url: "https://cootratiempo.com/afiliacion/"
+    },
+    {
+        name: "Novedades",
+        url: "https://cootratiempo.com/novedades/"
+    },
+    {
+        name: "Clasificados",
+        url: "https://cootratiempo.com/clasificados/"
+    },
+    {
+        name: "Contáctenos",
+        url: "https://cootratiempo.com/contactenos/"
+    },
+]
+---
+
+<header class="w-full flex flex-row justify-between xl:justify-center items-center py-2 px-5 xl:px-20 gap-12">
+    <a href="https://cootratiempo.com" class="flex items-center">
+        <img src="LogoWeb.jpg" alt="Logo Cootratiempo">
+    </a>
+    <nav class="hidden xl:block bg-[#E1E5F0] px-4 rounded-full">
+        <ul class="flex flex-row items-center justify-center text-[#2F539F] font-bold gap-7 text-[18px]">
+            <li>
+                <a href="https://cootratiempo.com">
+                    <img src="homeIco.jpg" alt="Logo home">
+                </a>
+            </li>
+            {
+                options.map(({name, url, links}, index) => (
+                    <li class="relative group">
+                        <div class="flex flex-col items-start">
+                            <a class="flex flex-row items-center py-2 hover:text-[#2f539fc4]" href={url}>
+                                {name}
+                                {links && <Arrow />}
+                            </a>
+
+                            {links && (
+                            <div
+                                class="
+                                absolute left-0 mt-10
+                                w-fit max-h-0 overflow-hidden
+                                opacity-0 pointer-events-none
+                                group-hover:opacity-100 group-hover:pointer-events-auto group-hover:max-h-[500px]
+                                flex flex-col text-[14px] 
+                                rounded-bl-3xl rounded-tr-3xl
+                                transition-all duration-300 ease-in-out
+                                "
+                            >
+                                {links.map((link) => (
+                                    <a
+                                        class="px-6 py-2 bg-[#35559AD6] text-white hover:text-[#2F539F] hover:bg-[#E1E5F0]
+                                        transition-all duration-300"
+                                        href={link.url}>
+                                        {link.name}
+                                    </a>
+                                ))}
+                            </div>
+                            )}
+                        </div>
+                    </li>
+                ))
+            }
+        </ul>
+    </nav>
+
+    <button id="open-nav" class="fixed top-5 right-5 z-50 xl:hidden bg-[#2E549E] w-14 h-14 rounded-md flex flex-col justify-around items-center p-4 transition-all duration-300 ease-in-out group">
+        <div class="bg-white w-full h-[2px] transition-all duration-300 ease-in-out group-[.open]:rotate-45 group-[.open]:translate-y-[8px]"></div>
+        <div class="bg-white w-full h-[2px] transition-all duration-300 ease-in-out group-[.open]:opacity-0"></div>
+        <div class="bg-white w-full h-[2px] transition-all duration-300 ease-in-out group-[.open]:-rotate-45 group-[.open]:-translate-y-[8px]"></div>
+    </button>
+
+    <div
+    id="phone-nav"
+    class="z-30 fixed w-screen transform -translate-x-full transition-all opacity-0 duration-300 h-screen bg-black/30 right-0 top-0"
+    >
+        <div class="bg-[#2E549E] absolute top-0 w-[70%] h-full hero-back left-0 overflow-visible">
+            <ul class="flex flex-col items-center justify-center text-white font-bold gap-3 text-[18px] mt-4">
+                <a href="https://cootratiempo.com" class="flex items-center">
+                    <img src="logoWhite.webp" alt="Logo Cootratiempo">
+                </a>
+                {
+                    options.map(({name, url, links}, index) => (
+                        <li class="flex flex-col w-full items-center">
+                            <div class="flex flex-col w-full items-center">
+                                {
+                                    links ?
+                                    <p class="toggle-btn w-full flex flex-row justify-center items-center py-2 hover:text-[#2f539fc4]" data-index={`${index}`}>
+                                        {name}
+                                        <Arrow />
+                                    </p>
+                                    :
+                                    <a class="flex flex-row items-center py-2 hover:text-[#2f539fc4]" href={url}>
+                                        {name}
+                                    </a>
+                                }
+
+                                {links && (
+                                <div
+                                    class="submenu w-full flex-col hidden gap-1"
+                                    data-index={`${index}`}
+                                >
+                                    {links.map((link) => (
+                                        <a
+                                            class="w-full px-6 py-2 bg-[#E1E5F0] text-[#2f539fc4]
+                                            transition-all duration-300 text-center"
+                                            href={link.url}>
+                                            {link.name}
+                                        </a>
+                                    ))}
+                                </div>
+                                )}
+                            </div>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </div>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.toggle-btn');
+        const submenus = document.querySelectorAll('.submenu');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const index = button.getAttribute('data-index');
+                submenus.forEach(sub => {
+                    const indexSub = sub.getAttribute('data-index')
+                    if (index == indexSub) {
+                        sub.classList.toggle('flex')
+                        sub.classList.toggle('hidden')
+                    } else {
+                        if (sub.classList.contains('flex')) {
+                            sub.classList.remove('flex')
+                        }
+                        if (!sub.classList.contains('hidden')) {
+                            sub.classList.add('hidden')
+                        }
+                    }
+                })
+            
+            });
+        });
+    });
+
+    const menuButton = document.getElementById("open-nav");
+    const contNav = document.getElementById("phone-nav");
+
+    if (menuButton) {
+        menuButton.addEventListener("click", () => {
+        menuButton.classList.toggle("open");
+        contNav?.classList.toggle("opacity-100");
+        contNav?.classList.toggle("translate-x-0");
+        });
+    }
+</script>

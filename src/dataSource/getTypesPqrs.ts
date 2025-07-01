@@ -1,6 +1,6 @@
 export const fetchOptions = async () => {
   try {
-    const res = await fetch("/pqrs/api/tipos");
+    const res = await fetch("/api/tipos");
     const data = await res.json();
     return res.ok ? data : data.error;
   } catch {

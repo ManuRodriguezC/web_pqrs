@@ -10,7 +10,7 @@ interface RegisPQRS {
 
 export const registerPqrs = async (info: RegisPQRS) => {
   try {
-    const response = await fetch("/pqrs/api/registrar", {
+    const response = await fetch("/api/registrar", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

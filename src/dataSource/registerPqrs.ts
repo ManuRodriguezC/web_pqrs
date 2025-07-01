@@ -1,27 +1,29 @@
 interface RegisPQRS {
-  name: string;
-  asociado: number;
-  email: string;
-  phone: string;
-  description: string;
-  userCreated: string;
-  typePQRS: number;
+	name: String,
+	asociado: Number,
+	email: string,
+	phone: String,
+	description: String,
+	userCreated: String,
+	typePQRS: Number
 }
 
 export const registerPqrs = async (info: RegisPQRS) => {
   try {
-    const response = await fetch("https://pqrs-cootratiempo.vercel.app/api/registrar", {
+    const response = await fetch("http://161.18.252.219:8001/api/api-pqrs/", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `TOKEN ${import.meta.env.PUBLIC_TOKEN_URL}`
       },
       body: JSON.stringify(info)
     });
-
+    if (!response.ok) {
+      return "Error al obtener los tipos de solicitud";
+    }
     const data = await response.json();
-    return response.ok ? data : data.error;
-
+    return data;
   } catch (error) {
-    return "El servicio de registro está caído, por favor intente más tarde";
+    return "El servicio de registro esta caido, por favor intente más tarde";
   }
-};
+}

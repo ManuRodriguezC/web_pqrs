@@ -5,7 +5,7 @@ export async function GET() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Token ${import.meta.env.PUBLIC_TOKEN_URL}`
+        Authorization: `Token 5992587b2057001b8a752f141ccf435997497e32`
       }
     });
 

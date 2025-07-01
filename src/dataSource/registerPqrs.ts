@@ -1,30 +1,27 @@
 interface RegisPQRS {
-	name: String,
-	asociado: Number,
-	email: string,
-	phone: String,
-	description: String,
-	userCreated: String,
-	typePQRS: Number
+  name: string;
+  asociado: number;
+  email: string;
+  phone: string;
+  description: string;
+  userCreated: string;
+  typePQRS: number;
 }
 
 export const registerPqrs = async (info: RegisPQRS) => {
-  const url = import.meta.env.PUBLIC_URL_REGIS
   try {
-    const response = await fetch(url, {
+    const response = await fetch("/pqrs/api/registrar", {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `TOKEN ${import.meta.env.PUBLIC_TOKEN_URL}`
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(info)
     });
-    if (!response.ok) {
-      return "Error al obtener los tipos de solicitud";
-    }
+
     const data = await response.json();
-    return data;
+    return response.ok ? data : data.error;
+
   } catch (error) {
-    return "El servicio de registro esta caido, por favor intente más tarde";
+    return "El servicio de registro está caído, por favor intente más tarde";
   }
-}
+};

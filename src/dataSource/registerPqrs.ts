@@ -10,7 +10,7 @@ interface RegisPQRS {
 
 export const registerPqrs = async (info: RegisPQRS) => {
   try {
-    const response = await fetch("http://161.18.252.219:8001/api/api-pqrs/", {
+    const response = await fetch("https://pqrscootratiempo.pythonanywhere.com/api/api-pqrs/", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

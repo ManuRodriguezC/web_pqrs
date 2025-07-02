@@ -1,6 +1,6 @@
 export const fetchOptions = async () => {
   try {
-    const response = await fetch("http://161.18.252.219:8001/api/api-types-pqrs/", {
+    const response = await fetch("https://pqrscootratiempo.pythonanywhere.com/api/api-types-pqrs/", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

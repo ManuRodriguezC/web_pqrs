@@ -1,13 +1,15 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
-import vercel from '@astrojs/vercel';
+import node from '@astrojs/node';
 
 export default defineConfig({
-  output: "server", // Esto permite tener server y client.
-  adapter: vercel(),
+  adapter: node({
+    mode: "standalone"
+  }),
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+  base: "/pqrs"
 });
